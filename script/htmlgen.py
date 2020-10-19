@@ -66,84 +66,93 @@ back_matter = r"""
    </body>
 </html>
 """
+
+
 def get_row_column(root='./Long'):
-    Columns = [x for x in listdir(root) if x[0] !='.']
-    assert len(Columns) >0, 'No subfolders under Asset/'
+    Columns = [x for x in listdir(root) if x[0] != '.']
+    assert len(Columns) > 0, 'No subfolders under Asset/'
     Rows = listdir(f"{root}/{Columns[0]}")
     for c in Columns:
         assert set(listdir(f"{root}/{c}")) == set(Rows)
-    return Rows,Columns
+    return Rows, Columns
 
-def gen_table_header(name='noname',cols=["nothing"],file=None):
+
+def gen_table_header(name='noname', cols=["nothing"], file=None):
     print(f"""
     <div>
     <h2> {name} </h2>
       <table border = "1" class="inlineTable">
-    """,file=file)
+    """, file=file)
     print(
-    ''.join([r"""
-        <col width="300">""" for  _ in cols]),
+        ''.join([r"""
+        <col width="300">""" for _ in cols]),
         file=file)
     print(
-    """     <tr> """,file=file)
+        """     <tr> """, file=file)
     print(
-    ''.join([f"""
-        <th>{col}</th>""" for  col in cols])+
-    """ 
-</tr>"""
-    ,file=file)
+        ''.join([f"""
+        <th>{col}</th>""" for col in cols]) +
+        """ 
+</tr>""", file=file)
 
-def audio_entry(audio,file=None):
+
+def audio_entry(audio, file=None):
     print(
-    f"""
+        f"""
     <td>
         <audio controls style="width: 200px;">
         <source src={audio} type="audio/wav">
             Your browser does not support the audio element.
         </audio>
-    </td>""",file=file)
+    </td>""", file=file)
 
-def text_entry(text,file=None):
+
+def text_entry(text, file=None):
     print(
         f"""
         <th>{text}</th>""",
         file=file)
 
-def single_row(columns,text=True,file=None):
-    print("<tr>",file=file)
+
+def single_row(columns, text=True, file=None):
+    print("<tr>", file=file)
     for c in columns:
         if(text):
-            text_entry(c,file=file)
+            text_entry(c, file=file)
         else:
-            audio_entry(c,file=file)
-    print("</tr>",file=file)
-    
-    
+            audio_entry(c, file=file)
+    print("</tr>", file=file)
 
-def gen_table(args,file=None):
+
+def gen_table(args, file=None):
     for t in args.table:
-        rows,cols = get_row_column()
-        gen_table_header(name=t,cols=cols,file=file)
+        rows, cols = get_row_column()
+        gen_table_header(name=t, cols=cols, file=file)
         for r in rows:
             c = [f"./{t}/{x}/{r}" for x in cols]
-            single_row(c,text=args.name_only,file=file)
+            single_row(c, text=args.name_only, file=file)
         print("""
             </table>
         </div>
-        """,file=file)
+        """, file=file)
+
 
 def main(args):
     fname = args.output
-    with open(fname,'w') as f:
-        print(front_matter,file=f)
-        gen_table(args,file=f)
-        print(back_matter,file=f)
+    with open(fname, 'w') as f:
+        print(front_matter, file=f)
+        gen_table(args, file=f)
+        print(back_matter, file=f)
 
-if __name__=="__main__":
+
+if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Process some integers.')
-    parser.add_argument('-o','--output', type=str, default='index.html',help='output name')
-    parser.add_argument('-n','--name_only', action="store_true",help='put file names only')
-    parser.add_argument('-t','--table', type=str, action="append",nargs='+', help='names of tables', default=['Long','Normal'])
+    parser.add_argument('-o', '--output', type=str,
+                        default='index.html', help='output name')
+    parser.add_argument('-n', '--name_only',
+                        action="store_true", help='put file names only')
+    parser.add_argument('-t', '--table', type=str, action="append",
+                        nargs='+', help='names of tables', default=['Long', 'Normal'])
 
     args = parser.parse_args()
 
