@@ -1,0 +1,198 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Automaticaly generated content, please update scripts/htmlgen.py for any change -->
+   <head>
+      <meta charset="UTF-8">
+      <title align="center">blah blah"</title>
+      <style type="text/css">
+        body, input, select, td, li, div, textarea, p {
+        	font-size: 11px;
+        	line-height: 16px;
+        	font-family: verdana, arial, sans-serif;
+        }
+
+        body {
+        	margin:5px;
+        	background-color:white;
+        }
+
+        h1 {
+        	font-size:16px;
+        	font-weight:bold;
+        }
+
+        h2 {
+        	font-size:14px;
+        	font-weight:bold;
+        }
+      </style>
+   </head>
+   <body>
+      <article>
+         <header>
+            <h1>Title Here</h1>
+         </header>
+      </article>
+
+      <div>
+      Website license info sheet <a href = https://yolanda-gao.github.io/Interactive-Style-TTS/Interactive_TTS_license.pdf >pdf</a>
+      </div>
+
+
+      <div>
+        <h2>Abstract</h2>
+        <p> While modern TTS technologies have made significant advancements in audio quality, there is still a lack of behavior naturalness compared to conversing with people. We propose a style-embedded TTS system that generates styled responses based on the speech query style. To achieve this, the system includes a style extraction model that extracts a style embedding from the speech query, which is then used by the TTS to produce a matching response. We faced two main challenges: 1) only a small portion of the TTS training dataset has style labels, which is needed to train a multi-style TTS that respects different style embeddings during inference. 2) The TTS system and the style extraction model have disjoint training datasets. We need consistent style labels across these two datasets so that the TTS can learn to respect the labels produced by the style extraction model during inference. To solve these, we adopted a semi-supervised approach that uses the style extraction model to create style labels for the TTS dataset and applied transfer learning to learn the style embedding jointly. Our experiment results show user preference for the styled TTS responses and demonstrate the style-embedded TTS system’s capability of mimicking the speech query style.</p>
+      </div>
+
+      <h2> Contents </h2>
+      <div id="toc_container">
+         <ul>
+            <b> <a href="#Style">A: Style TTS samples</a> </b><br/>
+            <b> <a href="#RenderingLevel">B: Controllable styles </a> </b><br/>
+            <b> <a href="#Matching">C: Real-life input queries and responses</a> </b><br/>
+         </ul>
+      </div>
+
+
+    <div>
+    <h2> Long </h2>
+      <table border = "1" class="inlineTable">
+    
+
+        <col width="300">
+        <col width="300">
+        <col width="300">
+        <col width="300">
+        <col width="300">
+        <col width="300">
+     <tr> 
+
+        <th>GT</th>
+        <th>Self_attention</th>
+        <th>Multirate</th>
+        <th>Multirate_noPooling</th>
+        <th>Tacotron2</th>
+        <th>LSTM</th> 
+</tr>
+<tr>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/GT/excellent_audio_example.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Self_attention/excellent_audio_example.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Multirate/excellent_audio_example.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Multirate_noPooling/excellent_audio_example.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Tacotron2/excellent_audio_example.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/LSTM/excellent_audio_example.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+</tr>
+
+            </table>
+        </div>
+        
+
+    <div>
+    <h2> Normal </h2>
+      <table border = "1" class="inlineTable">
+    
+
+        <col width="300">
+        <col width="300">
+        <col width="300">
+        <col width="300">
+        <col width="300">
+        <col width="300">
+     <tr> 
+
+        <th>GT</th>
+        <th>Self_attention</th>
+        <th>Multirate</th>
+        <th>Multirate_noPooling</th>
+        <th>Tacotron2</th>
+        <th>LSTM</th> 
+</tr>
+<tr>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/GT/excellent_audio_example.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Self_attention/excellent_audio_example.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Multirate/excellent_audio_example.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Multirate_noPooling/excellent_audio_example.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Tacotron2/excellent_audio_example.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/LSTM/excellent_audio_example.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+</tr>
+
+            </table>
+        </div>
+        
+
+   </body>
+</html>
+
