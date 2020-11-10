@@ -38,28 +38,17 @@ front_matter = r"""
    <body>
       <article>
          <header>
-            <h1>Title Here</h1>
+            <h1>Multi-rate attention architecture for fast streamable Text-to-speech spectrum modeling</h1>
          </header>
       </article>
-
-      <div>
-      Website license info sheet <a href = https://yolanda-gao.github.io/Interactive-Style-TTS/Interactive_TTS_license.pdf >pdf</a>
-      </div>
 
 
       <div>
         <h2>Abstract</h2>
-        <p> While modern TTS technologies have made significant advancements in audio quality, there is still a lack of behavior naturalness compared to conversing with people. We propose a style-embedded TTS system that generates styled responses based on the speech query style. To achieve this, the system includes a style extraction model that extracts a style embedding from the speech query, which is then used by the TTS to produce a matching response. We faced two main challenges: 1) only a small portion of the TTS training dataset has style labels, which is needed to train a multi-style TTS that respects different style embeddings during inference. 2) The TTS system and the style extraction model have disjoint training datasets. We need consistent style labels across these two datasets so that the TTS can learn to respect the labels produced by the style extraction model during inference. To solve these, we adopted a semi-supervised approach that uses the style extraction model to create style labels for the TTS dataset and applied transfer learning to learn the style embedding jointly. Our experiment results show user preference for the styled TTS responses and demonstrate the style-embedded TTS system’s capability of mimicking the speech query style.</p>
+        <p>Typical high quality text-to-speech (TTS) systems today use a two-stage architecture, with a spectrum model stage that generates spectral frames and a vocoder stage that generates the actual audio. High-quality spectrum models usually incorporate the encoder-decoder architecture with self-attention or bi-directional long short-term (BLSTM) units. While these models can produce high quality speech, they often incur O(L) increase in both latency and real-time factor (RTF) with respect to input length L. In other words, longer inputs leads to longer delay and slower synthesis speed, limiting its use in real-time applications. In this paper, we propose a multi-rate attention architecture that breaks the latency and RTF bottlenecks by computing a compact representation during encoding and recurrently generating the attention vector in a streaming manner during decoding. The proposed architecture achieves high audio quality (MOS of 4.31 compared to groundtruth 4.48), low latency, and low RTF at the same time. Meanwhile, both latency and RTF of the proposed system stay constant regardless of input lengths, making it ideal for real-time applications.</p>
       </div>
 
-      <h2> Contents </h2>
-      <div id="toc_container">
-         <ul>
-            <b> <a href="#Style">A: Style TTS samples</a> </b><br/>
-            <b> <a href="#RenderingLevel">B: Controllable styles </a> </b><br/>
-            <b> <a href="#Matching">C: Real-life input queries and responses</a> </b><br/>
-         </ul>
-      </div>
+      <h2> Supplementary audio samples </h2>
 """
 
 back_matter = r"""
@@ -105,7 +94,7 @@ def gen_table_header(name='noname', cols=["nothing"], file=None):
     print(
         ''.join([f"""
         <th>{col}</th>""" for col in cols]) +
-        """ 
+        """
 </tr>""", file=file)
 
 
@@ -140,7 +129,9 @@ def single_row(columns, text=True, file=None):
 def gen_table(args, file=None):
     for t in args.table:
         rows, cols = get_row_column(root=t)
+        cols=['Groundtruth','Multi-rate','Multi-rate (no dynamic pooling)','LSTM','Self-attention','Tacotron2']
         gen_table_header(name=t, cols=cols, file=file)
+        cols=['Groundtruth','Multi-rate','Multi-rate_no_pooling','LSTM','Self-attention','Tacotron2']
         for r in rows:
             c = [f"./{t}/{x}/{r}" for x in cols]
             single_row(c, text=args.name_only, file=file)
@@ -165,12 +156,12 @@ if __name__ == "__main__":
     parser.add_argument('-n', '--name_only',
                         action="store_true", help='put file names only')
     parser.add_argument('-t', '--table', type=str, action="append",
-                        nargs='+', help='names of tables', default=['Long', 'Normal'])
+                        nargs='+', help='names of tables', default=['Normal', 'Long'])
     parser.add_argument('-del', '--delete',
                         action="store_true", help='delete files')
-    
 
-    global args 
+
+    global args
     args = parser.parse_args()
 
     main(args)

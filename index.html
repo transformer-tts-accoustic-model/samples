@@ -31,98 +31,18 @@
    <body>
       <article>
          <header>
-            <h1>Title Here</h1>
+            <h1>Multi-rate attention architecture for fast streamable Text-to-speech spectrum modeling</h1>
          </header>
       </article>
-
-      <div>
-      Website license info sheet <a href = https://yolanda-gao.github.io/Interactive-Style-TTS/Interactive_TTS_license.pdf >pdf</a>
-      </div>
 
 
       <div>
         <h2>Abstract</h2>
-        <p> While modern TTS technologies have made significant advancements in audio quality, there is still a lack of behavior naturalness compared to conversing with people. We propose a style-embedded TTS system that generates styled responses based on the speech query style. To achieve this, the system includes a style extraction model that extracts a style embedding from the speech query, which is then used by the TTS to produce a matching response. We faced two main challenges: 1) only a small portion of the TTS training dataset has style labels, which is needed to train a multi-style TTS that respects different style embeddings during inference. 2) The TTS system and the style extraction model have disjoint training datasets. We need consistent style labels across these two datasets so that the TTS can learn to respect the labels produced by the style extraction model during inference. To solve these, we adopted a semi-supervised approach that uses the style extraction model to create style labels for the TTS dataset and applied transfer learning to learn the style embedding jointly. Our experiment results show user preference for the styled TTS responses and demonstrate the style-embedded TTS system’s capability of mimicking the speech query style.</p>
+        <p>Typical high quality text-to-speech (TTS) systems today use a two-stage architecture, with a spectrum model stage that generates spectral frames and a vocoder stage that generates the actual audio. High-quality spectrum models usually incorporate the encoder-decoder architecture with self-attention or bi-directional long short-term (BLSTM) units. While these models can produce high quality speech, they often incur O(L) increase in both latency and real-time factor (RTF) with respect to input length L. In other words, longer inputs leads to longer delay and slower synthesis speed, limiting its use in real-time applications. In this paper, we propose a multi-rate attention architecture that breaks the latency and RTF bottlenecks by computing a compact representation during encoding and recurrently generating the attention vector in a streaming manner during decoding. The proposed architecture achieves high audio quality (MOS of 4.31 compared to groundtruth 4.48), low latency, and low RTF at the same time. Meanwhile, both latency and RTF of the proposed system stay constant regardless of input lengths, making it ideal for real-time applications.</p>
       </div>
 
-      <h2> Contents </h2>
-      <div id="toc_container">
-         <ul>
-            <b> <a href="#Style">A: Style TTS samples</a> </b><br/>
-            <b> <a href="#RenderingLevel">B: Controllable styles </a> </b><br/>
-            <b> <a href="#Matching">C: Real-life input queries and responses</a> </b><br/>
-         </ul>
-      </div>
+      <h2> Supplementary audio samples </h2>
 
-
-    <div>
-    <h2> Long </h2>
-      <table border = "1" class="inlineTable">
-    
-
-        <col width="300">
-        <col width="300">
-        <col width="300">
-        <col width="300">
-        <col width="300">
-        <col width="300">
-     <tr> 
-
-        <th>GT</th>
-        <th>Self_attention</th>
-        <th>Multirate</th>
-        <th>Multirate_noPooling</th>
-        <th>Tacotron2</th>
-        <th>LSTM</th> 
-</tr>
-<tr>
-
-    <td>
-        <audio controls style="width: 200px;">
-        <source src=./Long/GT/excellent_audio_example.wav type="audio/wav">
-            Your browser does not support the audio element.
-        </audio>
-    </td>
-
-    <td>
-        <audio controls style="width: 200px;">
-        <source src=./Long/Self_attention/excellent_audio_example.wav type="audio/wav">
-            Your browser does not support the audio element.
-        </audio>
-    </td>
-
-    <td>
-        <audio controls style="width: 200px;">
-        <source src=./Long/Multirate/excellent_audio_example.wav type="audio/wav">
-            Your browser does not support the audio element.
-        </audio>
-    </td>
-
-    <td>
-        <audio controls style="width: 200px;">
-        <source src=./Long/Multirate_noPooling/excellent_audio_example.wav type="audio/wav">
-            Your browser does not support the audio element.
-        </audio>
-    </td>
-
-    <td>
-        <audio controls style="width: 200px;">
-        <source src=./Long/Tacotron2/excellent_audio_example.wav type="audio/wav">
-            Your browser does not support the audio element.
-        </audio>
-    </td>
-
-    <td>
-        <audio controls style="width: 200px;">
-        <source src=./Long/LSTM/excellent_audio_example.wav type="audio/wav">
-            Your browser does not support the audio element.
-        </audio>
-    </td>
-</tr>
-
-            </table>
-        </div>
-        
 
     <div>
     <h2> Normal </h2>
@@ -137,53 +57,1178 @@
         <col width="300">
      <tr> 
 
-        <th>GT</th>
-        <th>Self_attention</th>
-        <th>Multirate</th>
-        <th>Multirate_noPooling</th>
+        <th>Groundtruth</th>
+        <th>Multi-rate</th>
+        <th>Multi-rate (no dynamic pooling)</th>
+        <th>LSTM</th>
+        <th>Self-attention</th>
         <th>Tacotron2</th>
-        <th>LSTM</th> 
 </tr>
 <tr>
 
     <td>
         <audio controls style="width: 200px;">
-        <source src=./Normal/GT/excellent_audio_example.wav type="audio/wav">
+        <source src=./Normal/Groundtruth/conversation_0036.wav type="audio/wav">
             Your browser does not support the audio element.
         </audio>
     </td>
 
     <td>
         <audio controls style="width: 200px;">
-        <source src=./Normal/Self_attention/excellent_audio_example.wav type="audio/wav">
+        <source src=./Normal/Multi-rate/conversation_0036.wav type="audio/wav">
             Your browser does not support the audio element.
         </audio>
     </td>
 
     <td>
         <audio controls style="width: 200px;">
-        <source src=./Normal/Multirate/excellent_audio_example.wav type="audio/wav">
+        <source src=./Normal/Multi-rate_no_pooling/conversation_0036.wav type="audio/wav">
             Your browser does not support the audio element.
         </audio>
     </td>
 
     <td>
         <audio controls style="width: 200px;">
-        <source src=./Normal/Multirate_noPooling/excellent_audio_example.wav type="audio/wav">
+        <source src=./Normal/LSTM/conversation_0036.wav type="audio/wav">
             Your browser does not support the audio element.
         </audio>
     </td>
 
     <td>
         <audio controls style="width: 200px;">
-        <source src=./Normal/Tacotron2/excellent_audio_example.wav type="audio/wav">
+        <source src=./Normal/Self-attention/conversation_0036.wav type="audio/wav">
             Your browser does not support the audio element.
         </audio>
     </td>
 
     <td>
         <audio controls style="width: 200px;">
-        <source src=./Normal/LSTM/excellent_audio_example.wav type="audio/wav">
+        <source src=./Normal/Tacotron2/conversation_0036.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+</tr>
+<tr>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Groundtruth/arctic_b0531.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Multi-rate/arctic_b0531.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Multi-rate_no_pooling/arctic_b0531.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/LSTM/arctic_b0531.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Self-attention/arctic_b0531.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Tacotron2/arctic_b0531.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+</tr>
+<tr>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Groundtruth/frequently_heard2_0018.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Multi-rate/frequently_heard2_0018.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Multi-rate_no_pooling/frequently_heard2_0018.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/LSTM/frequently_heard2_0018.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Self-attention/frequently_heard2_0018.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Tacotron2/frequently_heard2_0018.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+</tr>
+<tr>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Groundtruth/conversation_0003.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Multi-rate/conversation_0003.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Multi-rate_no_pooling/conversation_0003.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/LSTM/conversation_0003.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Self-attention/conversation_0003.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Tacotron2/conversation_0003.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+</tr>
+<tr>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Groundtruth/misc_speech_team_0052.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Multi-rate/misc_speech_team_0052.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Multi-rate_no_pooling/misc_speech_team_0052.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/LSTM/misc_speech_team_0052.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Self-attention/misc_speech_team_0052.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Tacotron2/misc_speech_team_0052.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+</tr>
+<tr>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Groundtruth/arctic_a0542.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Multi-rate/arctic_a0542.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Multi-rate_no_pooling/arctic_a0542.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/LSTM/arctic_a0542.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Self-attention/arctic_a0542.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Tacotron2/arctic_a0542.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+</tr>
+<tr>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Groundtruth/calculator_0007.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Multi-rate/calculator_0007.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Multi-rate_no_pooling/calculator_0007.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/LSTM/calculator_0007.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Self-attention/calculator_0007.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Tacotron2/calculator_0007.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+</tr>
+<tr>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Groundtruth/conversation_0050.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Multi-rate/conversation_0050.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Multi-rate_no_pooling/conversation_0050.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/LSTM/conversation_0050.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Self-attention/conversation_0050.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Tacotron2/conversation_0050.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+</tr>
+<tr>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Groundtruth/frequently_heard_0198.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Multi-rate/frequently_heard_0198.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Multi-rate_no_pooling/frequently_heard_0198.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/LSTM/frequently_heard_0198.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Self-attention/frequently_heard_0198.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Tacotron2/frequently_heard_0198.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+</tr>
+<tr>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Groundtruth/call_0077.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Multi-rate/call_0077.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Multi-rate_no_pooling/call_0077.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/LSTM/call_0077.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Self-attention/call_0077.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Tacotron2/call_0077.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+</tr>
+<tr>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Groundtruth/frequently_heard2_0019.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Multi-rate/frequently_heard2_0019.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Multi-rate_no_pooling/frequently_heard2_0019.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/LSTM/frequently_heard2_0019.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Self-attention/frequently_heard2_0019.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Tacotron2/frequently_heard2_0019.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+</tr>
+<tr>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Groundtruth/conversation_0080.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Multi-rate/conversation_0080.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Multi-rate_no_pooling/conversation_0080.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/LSTM/conversation_0080.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Self-attention/conversation_0080.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Tacotron2/conversation_0080.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+</tr>
+<tr>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Groundtruth/weather_0004.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Multi-rate/weather_0004.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Multi-rate_no_pooling/weather_0004.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/LSTM/weather_0004.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Self-attention/weather_0004.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Tacotron2/weather_0004.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+</tr>
+<tr>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Groundtruth/conversation_0099.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Multi-rate/conversation_0099.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Multi-rate_no_pooling/conversation_0099.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/LSTM/conversation_0099.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Self-attention/conversation_0099.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Tacotron2/conversation_0099.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+</tr>
+<tr>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Groundtruth/arctic_a0281.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Multi-rate/arctic_a0281.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Multi-rate_no_pooling/arctic_a0281.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/LSTM/arctic_a0281.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Self-attention/arctic_a0281.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Tacotron2/arctic_a0281.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+</tr>
+<tr>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Groundtruth/arctic_b0301.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Multi-rate/arctic_b0301.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Multi-rate_no_pooling/arctic_b0301.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/LSTM/arctic_b0301.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Self-attention/arctic_b0301.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Tacotron2/arctic_b0301.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+</tr>
+<tr>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Groundtruth/trivia_0002.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Multi-rate/trivia_0002.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Multi-rate_no_pooling/trivia_0002.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/LSTM/trivia_0002.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Self-attention/trivia_0002.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Tacotron2/trivia_0002.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+</tr>
+<tr>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Groundtruth/contacts_0002.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Multi-rate/contacts_0002.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Multi-rate_no_pooling/contacts_0002.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/LSTM/contacts_0002.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Self-attention/contacts_0002.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Normal/Tacotron2/contacts_0002.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+</tr>
+
+            </table>
+        </div>
+        
+
+    <div>
+    <h2> Long </h2>
+      <table border = "1" class="inlineTable">
+    
+
+        <col width="300">
+        <col width="300">
+        <col width="300">
+        <col width="300">
+        <col width="300">
+        <col width="300">
+     <tr> 
+
+        <th>Groundtruth</th>
+        <th>Multi-rate</th>
+        <th>Multi-rate (no dynamic pooling)</th>
+        <th>LSTM</th>
+        <th>Self-attention</th>
+        <th>Tacotron2</th>
+</tr>
+<tr>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Groundtruth/uxr_weather_0007.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Multi-rate/uxr_weather_0007.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Multi-rate_no_pooling/uxr_weather_0007.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/LSTM/uxr_weather_0007.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Self-attention/uxr_weather_0007.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Tacotron2/uxr_weather_0007.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+</tr>
+<tr>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Groundtruth/wiki_b0019.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Multi-rate/wiki_b0019.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Multi-rate_no_pooling/wiki_b0019.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/LSTM/wiki_b0019.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Self-attention/wiki_b0019.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Tacotron2/wiki_b0019.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+</tr>
+<tr>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Groundtruth/wiki_b0061.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Multi-rate/wiki_b0061.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Multi-rate_no_pooling/wiki_b0061.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/LSTM/wiki_b0061.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Self-attention/wiki_b0061.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Tacotron2/wiki_b0061.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+</tr>
+<tr>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Groundtruth/prosody_supp_0052.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Multi-rate/prosody_supp_0052.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Multi-rate_no_pooling/prosody_supp_0052.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/LSTM/prosody_supp_0052.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Self-attention/prosody_supp_0052.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Tacotron2/prosody_supp_0052.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+</tr>
+<tr>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Groundtruth/wiki_a0042.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Multi-rate/wiki_a0042.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Multi-rate_no_pooling/wiki_a0042.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/LSTM/wiki_a0042.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Self-attention/wiki_a0042.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Tacotron2/wiki_a0042.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+</tr>
+<tr>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Groundtruth/wiki_a0129.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Multi-rate/wiki_a0129.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Multi-rate_no_pooling/wiki_a0129.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/LSTM/wiki_a0129.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Self-attention/wiki_a0129.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Tacotron2/wiki_a0129.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+</tr>
+<tr>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Groundtruth/wiki_a0170.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Multi-rate/wiki_a0170.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Multi-rate_no_pooling/wiki_a0170.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/LSTM/wiki_a0170.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Self-attention/wiki_a0170.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Tacotron2/wiki_a0170.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+</tr>
+<tr>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Groundtruth/uxr_news2_0004.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Multi-rate/uxr_news2_0004.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Multi-rate_no_pooling/uxr_news2_0004.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/LSTM/uxr_news2_0004.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Self-attention/uxr_news2_0004.wav type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+
+    <td>
+        <audio controls style="width: 200px;">
+        <source src=./Long/Tacotron2/uxr_news2_0004.wav type="audio/wav">
             Your browser does not support the audio element.
         </audio>
     </td>
