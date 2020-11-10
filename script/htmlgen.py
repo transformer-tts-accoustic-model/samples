@@ -2,7 +2,7 @@ r"""
     Generate Static HTML required to post on github
 """
 
-from os import listdir
+from os import listdir,remove,path
 import argparse
 
 front_matter = r"""
@@ -70,12 +70,25 @@ back_matter = r"""
 
 def get_row_column(root='./Long'):
     Columns = [x for x in listdir(root) if x[0] != '.']
-    assert len(Columns) > 0, 'No subfolders under Asset/'
-    Rows = listdir(f"{root}/{Columns[0]}")
+    assert len(Columns) > 0, f"No subfolders under {root}/"
+    Rows = set(listdir(f"{root}/{Columns[0]}"))
     for c in Columns:
-        assert set(listdir(f"{root}/{c}")) == set(Rows)
-    return Rows, Columns
+        Rows = Rows.intersection(set(listdir(f"{root}/{c}")))
 
+    cleanup(root,Rows,Columns)
+
+    return list(Rows), Columns
+
+def cleanup(root,rows,columns):
+    for c in columns:
+        for r in listdir(f"{root}/{c}"):
+            if r not in rows:
+                fpath = f"{root}/{c}/{r}"
+                if args.delete:
+                    assert path.isfile(fpath),f"{fpath} not single file"
+                    remove(fpath)
+                else:
+                    print(f"would delete {fpath}")
 
 def gen_table_header(name='noname', cols=["nothing"], file=None):
     print(f"""
@@ -126,7 +139,7 @@ def single_row(columns, text=True, file=None):
 
 def gen_table(args, file=None):
     for t in args.table:
-        rows, cols = get_row_column()
+        rows, cols = get_row_column(root=t)
         gen_table_header(name=t, cols=cols, file=file)
         for r in rows:
             c = [f"./{t}/{x}/{r}" for x in cols]
@@ -153,7 +166,11 @@ if __name__ == "__main__":
                         action="store_true", help='put file names only')
     parser.add_argument('-t', '--table', type=str, action="append",
                         nargs='+', help='names of tables', default=['Long', 'Normal'])
+    parser.add_argument('-del', '--delete',
+                        action="store_true", help='delete files')
+    
 
+    global args 
     args = parser.parse_args()
 
     main(args)
